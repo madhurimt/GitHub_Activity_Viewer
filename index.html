@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Activity Viewer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>Enter the GitHub username to list down all the repositories</h2>
+    <div class="details">
+      <div id="repo_details">
+        <label for="user_name">Github UserName</label>
+        <input type="text" id="uname" name="uname" />
+        <button id="searchbtn">Get Repo Names</button>
+        <div id="api_data"></div>
+      </div>
+      <div id="commit_details"></div>
+      <!-- <label for="repo_name">Repository Name</label>
+      <input type="text" id="rname" name="rname" />
+      <button id="commit_btn">Get Commits</button>
+      <div id="commit_data"></div> -->
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
