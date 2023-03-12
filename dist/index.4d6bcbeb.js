@@ -27303,24 +27303,34 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "UserInput", ()=>UserInput);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
+var _config = require("../config");
+var _repoResults = require("./RepoResults");
 var _s = $RefreshSig$();
 const UserInput = ()=>{
     _s();
     const [userName, setUserName] = (0, _react.useState)();
+    const [repos, setRepo] = (0, _react.useState)();
+    function handleClick() {
+        fetch(`${(0, _config.API_URL)}/${userName}/repos`).then(function(res) {
+            return res.json();
+        }).then(function(info) {
+            setRepo(info);
+        });
+    }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 children: "Enter the username to get the respositories"
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 7,
+                lineNumber: 21,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                 children: "UserName"
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 8,
+                lineNumber: 22,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -27332,20 +27342,28 @@ const UserInput = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 9,
+                lineNumber: 23,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: handleClick,
                 children: "Search"
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 17,
+                lineNumber: 31,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _repoResults.RepoResults), {
+                repos: repos
+            }, void 0, false, {
+                fileName: "src/components/UserInput.js",
+                lineNumber: 32,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true);
 };
-_s(UserInput, "wQ6aPoHzeIKNlERSirK4K1Q6j3M=");
+_s(UserInput, "ZxHmVWoeWgUYsR65Kgpww0nPOeM=");
 _c = UserInput;
 var _c;
 $RefreshReg$(_c, "UserInput");
@@ -27355,6 +27373,54 @@ $RefreshReg$(_c, "UserInput");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["1xC6H","e11Rl","gLLPy"], "gLLPy", "parcelRequire53ff")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../config":"jtCLN","./RepoResults":"8FnkX"}],"jtCLN":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "API_URL", ()=>API_URL);
+const API_URL = "https://api.github.com/users";
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8FnkX":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$6039 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$6039.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "RepoResults", ()=>RepoResults);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+const RepoResults = (props)=>{
+    const { repos  } = props;
+    console.log(repos);
+    if (repos !== undefined) {
+        const listRepo = repos.map((item)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                children: item.name
+            }, void 0, false, {
+                fileName: "src/components/RepoResults.js",
+                lineNumber: 7,
+                columnNumber: 42
+            }, undefined));
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+            children: listRepo
+        }, void 0, false, {
+            fileName: "src/components/RepoResults.js",
+            lineNumber: 8,
+            columnNumber: 12
+        }, undefined);
+    }
+};
+_c = RepoResults;
+var _c;
+$RefreshReg$(_c, "RepoResults");
+
+  $parcel$ReactRefreshHelpers$6039.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react/jsx-dev-runtime":"iTorj"}]},["1xC6H","e11Rl","gLLPy"], "gLLPy", "parcelRequire53ff")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map
