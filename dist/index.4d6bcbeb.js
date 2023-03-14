@@ -2930,20 +2930,31 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _client = require("react-dom/client");
 var _clientDefault = parcelHelpers.interopDefault(_client);
+var _repoResults = require("./components/RepoResults");
 var _userInput = require("./components/UserInput");
+const AppLayout = ()=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInput.UserInput), {}, void 0, false, {
+        fileName: "src/main.js",
+        lineNumber: 8,
+        columnNumber: 10
+    }, undefined);
+};
+_c = AppLayout;
 const root = (0, _clientDefault.default).createRoot(document.getElementById("root"));
-root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInput.UserInput), {}, void 0, false, {
+root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(AppLayout, {}, void 0, false, {
     fileName: "src/main.js",
-    lineNumber: 6,
+    lineNumber: 12,
     columnNumber: 13
 }, undefined));
+var _c;
+$RefreshReg$(_c, "AppLayout");
 
   $parcel$ReactRefreshHelpers$346a.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-dom/client":"lOjBx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./components/UserInput":"iel71"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-dom/client":"lOjBx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./components/UserInput":"iel71","./components/RepoResults":"8FnkX"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("98ff0b00b109147e");
 
@@ -27311,7 +27322,7 @@ const UserInput = ()=>{
     const [userName, setUserName] = (0, _react.useState)();
     const [repos, setRepo] = (0, _react.useState)();
     function handleClick() {
-        fetch(`${(0, _config.API_URL)}/${userName}/repos`).then(function(res) {
+        fetch(`${(0, _config.API_URL)}/users/${userName}/repos`).then(function(res) {
             return res.json();
         }).then(function(info) {
             setRepo(info);
@@ -27323,14 +27334,14 @@ const UserInput = ()=>{
                 children: "Enter the username to get the respositories"
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 21,
+                lineNumber: 20,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                 children: "UserName"
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 22,
+                lineNumber: 21,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -27342,7 +27353,7 @@ const UserInput = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 23,
+                lineNumber: 22,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27350,14 +27361,15 @@ const UserInput = ()=>{
                 children: "Search"
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 31,
+                lineNumber: 30,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _repoResults.RepoResults), {
-                repos: repos
+                repos: repos,
+                user: userName
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 32,
+                lineNumber: 31,
                 columnNumber: 7
             }, undefined)
         ]
@@ -27377,7 +27389,7 @@ $RefreshReg$(_c, "UserInput");
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "API_URL", ()=>API_URL);
-const API_URL = "https://api.github.com/users";
+const API_URL = "https://api.github.com";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8FnkX":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$6039 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
@@ -27392,26 +27404,85 @@ parcelHelpers.export(exports, "RepoResults", ()=>RepoResults);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _config = require("../config");
+var _userInput = require("./UserInput");
+var _commitResults = require("./CommitResults");
+var _commitResultsDefault = parcelHelpers.interopDefault(_commitResults);
+var _s = $RefreshSig$();
 const RepoResults = (props)=>{
-    const { repos  } = props;
-    console.log(repos);
-    if (repos !== undefined) {
-        const listRepo = repos.map((item)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+    _s();
+    const [userRepo, setUserRepo] = (0, _react.useState)();
+    const [commit, setCommits] = (0, _react.useState)();
+    function handleUserClick() {
+        fetch(`${(0, _config.API_URL)}/repos/${props.user}/${userRepo}/commits`).then(function(res) {
+            return res.json();
+        }).then(function(result) {
+            setCommits(result);
+        });
+    }
+    if (props.repos !== undefined) {
+        const listRepo = props.repos.map((item)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
                 children: item.name
-            }, void 0, false, {
+            }, item.id, false, {
                 fileName: "src/components/RepoResults.js",
-                lineNumber: 7,
-                columnNumber: 42
+                lineNumber: 22,
+                columnNumber: 7
             }, undefined));
-        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
-            children: listRepo
-        }, void 0, false, {
-            fileName: "src/components/RepoResults.js",
-            lineNumber: 8,
-            columnNumber: 12
-        }, undefined);
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+                    children: listRepo
+                }, void 0, false, {
+                    fileName: "src/components/RepoResults.js",
+                    lineNumber: 26,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    children: "Enter the repository name to find the commits"
+                }, void 0, false, {
+                    fileName: "src/components/RepoResults.js",
+                    lineNumber: 27,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                    children: "Repository"
+                }, void 0, false, {
+                    fileName: "src/components/RepoResults.js",
+                    lineNumber: 28,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                    type: "text",
+                    placeholder: "Enter the repository",
+                    value: userRepo,
+                    onChange: (e)=>{
+                        setUserRepo(e.target.value);
+                    }
+                }, void 0, false, {
+                    fileName: "src/components/RepoResults.js",
+                    lineNumber: 29,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    onClick: handleUserClick,
+                    children: "Search Commits"
+                }, void 0, false, {
+                    fileName: "src/components/RepoResults.js",
+                    lineNumber: 37,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _commitResultsDefault.default), {
+                    comm: commit
+                }, void 0, false, {
+                    fileName: "src/components/RepoResults.js",
+                    lineNumber: 38,
+                    columnNumber: 9
+                }, undefined)
+            ]
+        }, void 0, true);
     }
 };
+_s(RepoResults, "YYgqDto7+7vw6qnhUf6xWKfFFZs=");
 _c = RepoResults;
 var _c;
 $RefreshReg$(_c, "RepoResults");
@@ -27421,6 +27492,19 @@ $RefreshReg$(_c, "RepoResults");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react/jsx-dev-runtime":"iTorj"}]},["1xC6H","e11Rl","gLLPy"], "gLLPy", "parcelRequire53ff")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../config":"jtCLN","./UserInput":"iel71","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./CommitResults":"fp66L"}],"fp66L":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _repoResults = require("./RepoResults");
+const CommitResults = (props)=>{
+    console.log(props);
+    return;
+};
+_c = CommitResults;
+exports.default = CommitResults;
+var _c;
+$RefreshReg$(_c, "CommitResults");
+
+},{"./RepoResults":"8FnkX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["1xC6H","e11Rl","gLLPy"], "gLLPy", "parcelRequire53ff")
 
 //# sourceMappingURL=index.4d6bcbeb.js.map

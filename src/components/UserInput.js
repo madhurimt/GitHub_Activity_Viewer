@@ -7,7 +7,7 @@ export const UserInput = () => {
   const [repos, setRepo] = useState();
 
   function handleClick() {
-    fetch(`${API_URL}/${userName}/repos`)
+    fetch(`${API_URL}/users/${userName}/repos`)
       .then(function (res) {
         return res.json();
       })
@@ -15,7 +15,6 @@ export const UserInput = () => {
         setRepo(info);
       });
   }
-
   return (
     <>
       <h1>Enter the username to get the respositories</h1>
@@ -29,7 +28,7 @@ export const UserInput = () => {
         }}
       />
       <button onClick={handleClick}>Search</button>
-      <RepoResults repos={repos} />
+      <RepoResults repos={repos} user={userName} />
     </>
   );
 };
