@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { API_URL } from "../config";
 import { RepoResults } from "./RepoResults";
 
 export const UserInput = () => {
-  const [userName, setUserName] = useState();
+  const [userName, setUserName] = useState("");
+  const [userInput, setUserInput] = useState(userName);
   const [repos, setRepo] = useState();
 
   function handleClick() {
-    fetch(`${API_URL}/users/${userName}/repos`)
+    setUserInput(userName);
+  }
+
+  useEffect(() => {
+    if (!userInput) return;
+    getData();
+  }, [userInput]);
+
+  function getData() {
+    fetch(`${API_URL}/users/${userInput}/repos`)
       .then(function (res) {
         return res.json();
       })
@@ -28,7 +38,7 @@ export const UserInput = () => {
         }}
       />
       <button onClick={handleClick}>Search</button>
-      <RepoResults repos={repos} user={userName} />
+      <RepoResults repos={repos} user={userInput} />
     </>
   );
 };

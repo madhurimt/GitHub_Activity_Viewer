@@ -35,7 +35,7 @@ export const RepoResults = (props) => {
           }}
         />
         <button onClick={handleUserClick}>Search Commits</button>
-        <CommitResults comm={commit} />
+        {/* <CommitResults comm={commit} /> */}
       </>
     );
   }

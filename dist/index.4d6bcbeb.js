@@ -27319,10 +27319,20 @@ var _repoResults = require("./RepoResults");
 var _s = $RefreshSig$();
 const UserInput = ()=>{
     _s();
-    const [userName, setUserName] = (0, _react.useState)();
+    const [userName, setUserName] = (0, _react.useState)("");
+    const [userInput, setUserInput] = (0, _react.useState)(userName);
     const [repos, setRepo] = (0, _react.useState)();
     function handleClick() {
-        fetch(`${(0, _config.API_URL)}/users/${userName}/repos`).then(function(res) {
+        setUserInput(userName);
+    }
+    (0, _react.useEffect)(()=>{
+        if (!userInput) return;
+        getData();
+    }, [
+        userInput
+    ]);
+    function getData() {
+        fetch(`${(0, _config.API_URL)}/users/${userInput}/repos`).then(function(res) {
             return res.json();
         }).then(function(info) {
             setRepo(info);
@@ -27334,14 +27344,14 @@ const UserInput = ()=>{
                 children: "Enter the username to get the respositories"
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 20,
+                lineNumber: 30,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
                 children: "UserName"
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 21,
+                lineNumber: 31,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
@@ -27353,7 +27363,7 @@ const UserInput = ()=>{
                 }
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 22,
+                lineNumber: 32,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -27361,21 +27371,21 @@ const UserInput = ()=>{
                 children: "Search"
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 30,
+                lineNumber: 40,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _repoResults.RepoResults), {
                 repos: repos,
-                user: userName
+                user: userInput
             }, void 0, false, {
                 fileName: "src/components/UserInput.js",
-                lineNumber: 31,
+                lineNumber: 41,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true);
 };
-_s(UserInput, "ZxHmVWoeWgUYsR65Kgpww0nPOeM=");
+_s(UserInput, "gpDyUhf1NTS3Q0+D1wRh/e8OsLA=");
 _c = UserInput;
 var _c;
 $RefreshReg$(_c, "UserInput");
@@ -27470,13 +27480,6 @@ const RepoResults = (props)=>{
                     fileName: "src/components/RepoResults.js",
                     lineNumber: 37,
                     columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _commitResultsDefault.default), {
-                    comm: commit
-                }, void 0, false, {
-                    fileName: "src/components/RepoResults.js",
-                    lineNumber: 38,
-                    columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true);
@@ -27497,8 +27500,14 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _repoResults = require("./RepoResults");
 const CommitResults = (props)=>{
-    console.log(props);
-    return;
+// const { comm } = props;
+// console.log(comm);
+// if (comm != undefined) {
+//   const commitDetails = comm.map((com) => {
+//     <li>{com}</li>;
+//   });
+// }
+// return <ul>{commitDetails}</ul>;
 };
 _c = CommitResults;
 exports.default = CommitResults;
